@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+
+<html>
+    
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>xxx Snake Mira </title>
+    <style>
+        body {
+            background-color: rgb(224, 189, 98);
+            text-align: center;
+            border-color: rgb(129, 3, 3);
+            border-width: medium;
+
+        }
+
+        canvas {
+            border: 10px solid rgb(37, 26, 199);
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <canvas width="600" height="600"></canvas>
+
+
+    <script>
+
+        // canvas
+
+        const canvas = document.querySelector("canvas");
+
+        const ctx = canvas.getContext("2d");
+
+        //         posloucha
+        // document.addEventListener("keydown", keyPush);
+        document.addEventListener("keydown", ovladani);
+
+
+        // hrac
+        const snakeSize = 50;
+        let snakeSpeed = 10;
+        let snakePosX = 0;
+        let snakePosY = canvas.width / 2 - snakeSize / 2;
+
+
+        function gameLoop() {
+
+            drawStuff();
+
+            //moveStuff();
+
+            requestAnimationFrame(gameLoop);
+
+        }
+
+        gameLoop();
+
+
+
+
+        function drawStuff() {
+            rectangle('white', 0, 0, canvas.width, canvas.height);
+            rectangle('black', snakePosX, snakePosY, snakeSize, snakeSize);
+
+        }
+
+        function rectangle(color, x, y, width, height) {
+            ctx.fillStyle = color;
+            ctx.fillRect(x, y, width, height);
+        }
+        function moveStuff() {
+            snakePosX = snakePosX + snakeSpeed;
+
+            if (snakePosX > canvas.width) {
+                snakePosX = 0;
+            }
+        }
+        function ovladani(event) {
+
+            // alert(event.key);
+
+
+            switch (event.key) {
+
+                case "ArrowDown":
+                    snakePosY += snakeSpeed;
+                    // snakePosY -= snakeSpeed;
+
+                    break;
+
+
+                case "ArrowUp":
+                    snakePosY -= snakeSpeed;
+
+                    break;
+
+                case "ArrowRight":
+                    snakePosX += snakeSpeed;
+
+
+                    break;
+
+
+                case "ArrowLeft":
+                    snakePosX -= snakeSpeed;
+
+                    break;
+
+
+            }
+        }
+
+
+    </script>
+</body>
+
+</html>

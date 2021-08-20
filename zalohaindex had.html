@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake Mira </title>
+    <style>
+        body {
+            background-color: rgb(224, 189, 98);
+            text-align: center;
+            border-color: rgb(129, 3, 3);
+            border-width: medium;
+
+        }
+
+        canvas {
+            border: 10px solid green;
+        }
+    </style>
+</head>
+
+
+
+<body>
+    <canvas width="600" height="600"></canvas>
+    <h1>0</h1>
+
+    <script>
+        //poslouchani - stiskl jsem klavesu
+        document.addEventListener('keydown', keyPush);
+        
+
+        // canvas
+
+        const canvas = document.querySelector("canvas");
+
+        const ctx = canvas.getContext("2d");
+
+        const title = document.querySelector("h1");
+        
+
+        // hrac
+        const snakeSize = 50;
+        let snakeSpeed = 10;
+        let snakePosX = 20;
+        let snakePosY = canvas.width / 2 - snakeSize / 2;
+
+
+
+        // loop //keyPush();
+        
+        function gameLoop() {
+
+            drawStuff();
+            moveStuff();
+            requestAnimationFrame(gameLoop);
+            
+        }
+
+        gameLoop();
+
+
+        /* kresleni        */
+        function dr
+        awStuff() {
+            
+            rectangle('white', 0, 0, canvas.width, canvas.height);
+            rectangle('black', snakePosX, snakePosY, snakeSize, snakeSize);
+        }
+
+
+        /*/ kresli čtverec   */
+        
+        function rectangle(color, x, y, width, height) {
+				ctx.fillStyle = color;
+				ctx.fillRect(x, y, width, height);
+			}
+        /* hejbani         */
+        function moveStuff() {
+            if (snakePosX > canvas.width) {
+                snakePosX = 0;
+            }
+            snakePosX += snakeSpeed;
+        }
+        /* ovladani čtvrce        */
+
+        function keyPush() {
+
+            switch (event.key) {
+                case "ArrowUp":
+                    snakePosY += snakeSpeed;
+                    break;
+                case "ArrowDown":
+                    snakePosY -= snakeSpeed;
+                    break;
+            }
+            alert(event.key);
+            break;
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>
